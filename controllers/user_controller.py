@@ -16,3 +16,9 @@ class UserController:
 
     def eliminar_usuario(self, id):
         self.dao.eliminar(id)
+
+    def total_usuarios(self):
+        return self.dao.contar_usuarios()
+
+    def ultimo_usuario(self):
+        return self.dao.obtener_ultimo_usuario()

@@ -26,3 +26,11 @@ class UserDAO:
         sql = "DELETE FROM users WHERE id=%s"
         self.cursor.execute(sql, (id,))
         self.conexion.commit()
+    
+    def contar_usuarios(self):
+        self.cursor.execute("SELECT COUNT(*) FROM users")
+        return self.cursor.fetchone()[0]
+
+    def obtener_ultimo_usuario(self):
+        self.cursor.execute("SELECT * FROM users ORDER BY id DESC LIMIT 1")
+        return self.cursor.fetchone()

@@ -34,5 +34,20 @@ def delete(id):
     controller.eliminar_usuario(id)
     return redirect("/")
 
+from datetime import datetime
+
+@app.route("/dashboard")
+def dashboard():
+    total = controller.total_usuarios()
+    ultimo = controller.ultimo_usuario()
+    fecha = datetime.now().strftime("%d/%m/%Y %H:%M")
+
+    return render_template(
+        "dashboard.html",
+        total=total,
+        ultimo=ultimo,
+        fecha=fecha
+    )
+
 if __name__ == "__main__":
     app.run(debug=True)
